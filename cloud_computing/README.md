@@ -9,3 +9,5 @@
 #
 
 ## 3. Make mp3 file using Google text2speech API
+The modern Text-to-Speech software allows you to create a voice transcribe your readings 
+with the natural/ human-professional sound like in the TV. 
