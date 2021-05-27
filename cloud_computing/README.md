@@ -1,8 +1,50 @@
 # This page contain what Cloud Computing's team do
 
 ## 1. Make database on Firestore and setting up the API
+Go to google console and make a project, choose billing account, and basic stuff. After choosing the project has been created before, we do:
 
-#
+**1. Go to Firestore from navigation menu**
+
+On Data panel, we choose native mode, location and then create.
+
+After that, we start make a collection. For the collection ID we choose our project name, which is corak. 
+For the each of document ID we use the data name from our dataset (batik-bali, batik-cendrawasih, etc).
+
+We make for each document 6 field and fill the value based on our research from dataset:
+- name
+- characteristic
+- history
+- origin
+- philosophy
+- audio (for the text2speech mp3 link)
+
+For setting up the API, we go from console.firebase.google.com
+
+We create project, the firebase console automatically detect the project on our GCP
+
+After setting up, check check the terms, then we choose Android for App we want to build.
+
+Choose the name of the project, and at the end, we got file _google.services.json_.
+We gave this file to Android team for API Config, auth, etc.
+
+After that, we go to firestore database panel on sidebar, and choose rules column.
+Because we dont have authentication, we set the rules to allow to read, and prohibited to write.
+The code should look like this
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow write: if false;
+      allow read: if true;
+    }
+  }
+}
+```
+
+Then publish it
+
 
 ## 2. Make cloud storage for image and mp3
 
