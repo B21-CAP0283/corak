@@ -41,12 +41,53 @@ $npm install @google-cloud/text-to-speech
 
 Then, create a new file called text2speech.js In this file, copy the following codes and paste it in your file. Please, note that you should assign your projectID and keyFilename variable with your project ID on Google Cloud and your private key name respectively.
 
-<img src="Pictures/text2speech.png">
+```bash
+const textToSpeech = require('@google-cloud/text-to-speech');
+const fs = require('fs');
+const util = require('util');
+const projectId = 'PROJECTID'
+const keyFilename = 'KEYFILENAME.json'
+const client = new textToSpeech.TextToSpeechClient({ projectId, keyFilename });
+const YourSetting = fs.readFileSync('setting.json');
+async function Text2Speech(YourSetting) {
+  const [response] = await client.synthesizeSpeech(JSON.parse(YourSetting));
+  const writeFile = util.promisify(fs.writeFile);
+  await writeFile(JSON.parse(YourSetting).outputFileName, response.audioContent, 'binary');
+  console.log('Audio content written to file: ${JSON.parse(YourSetting).outputFileName}');
+}
+Text2Speech(YourSetting);
+```
 
 Next, create a setting file called setting.json You can construct this file with the following codes. 
 
 At “input text” you can change your text input to whatever text you want to be transcribed. at “voice” you can set the input language and input sound you like. You can also change the output file name at “outputfilename” in this setting file.
 
+```bash
+{
+    "audioConfig": {
+      "audioEncoding": "LINEAR16",
+      "pitch": 0,
+      "speakingRate": 1.00
+    },
+    "input": {
+      "text": " contoh "
+    },
+    "voice": {
+      "languageCode": "id-ID",
+      "name": "id-ID-Wavenet-A"
+    },
+    "outputFileName":"contoh.mp3"
+  }
+  ```
+  
+  Now everything is set. You can just test-run the program by using the following command in your terminal/ command prompt:
+  
+```bash
+  $ node text2speech.js
+>> Audio content written to file: output.mp3
+```
+
+Your output will be in the project folder with the name you assign in the setting file.
 
 
 
