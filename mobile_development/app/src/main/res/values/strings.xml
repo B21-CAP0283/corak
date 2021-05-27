@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Corak</string>
+    <string name="subTitleSplash">Identify Batik motives with your phone</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_corak">Welcome to Corak</string>
+    <string name="subWelcomeOne">Here you can identify Batik motives just with your camera</string>
+    <string name="subWelcomeTwo">Simply take a picture of the Batik motives you want to identify, and leave the rest to us to tell you the information about the motives</string>
+    <string name="next"><![CDATA[Next >>]]></string>
+    <string name="ready_to_try">Ready to Try?</string>
+    <string name="start">Start</string>
+    <string name="exit">Click back again to Exit</string>
+    <string name="bgimg">bgImg</string>
+    <string name="akurasi">98.7% Accurate with</string>
+    <string name="name">Name</string>
+    <string name="batik_name">Batik Bali</string>
+    <string name="bali">Bali</string>
+    <string name="origin">Origin</string>
+    <string name="characteristic">Characteristic</string>
+    <string name="characteristic_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas erat odio facilisi felis, blandit risus. Ultrices.</string>
+    <string name="philosophy">Philosophy</string>
+    <string name="philosophy_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis velit eu faucibus id. Ligula morbi suspendisse nisi, venenatis morbi cursus velit eu proin. Lorem malesuada semper sed ultrices risus viverra. Proin nam ipsum ornare sed. Congue faucibus nisl.</string>
+    <string name="take_a_motive_again">Take a Motive Again</string>
+    <string name="add_to_favourite">Add to Favourite</string>
+    <string name="batik_tidak_diketahui">Batik tidak diketahui</string>
+    <string name="play">Play</string>
+</resources>
