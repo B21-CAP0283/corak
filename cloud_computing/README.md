@@ -18,3 +18,39 @@ Enable the Cloud Text-to-Speech API which you can find this service in APIs & Se
 
 Create a service account key which you can find under APIs & Services > Credentials > Create Credentials > Service account
 
+continue by 1. selecting a New service account, 2. give a name to your service account, 3. click CREATE to confirm. (You do not need to select Role and please left the Key type as JSON), and 4. confirm to Create without Role as in the image below. After that, the Private key file will be saved to your computer. Please, keep it secure as it will be used as a key that linked with your Google Cloud project.
+
+**2.Prepare Node.js in Your PC**
+
+This step is pretty simple. Just download and install Node.js. After it is done, please confirm that your Node.js is installed successfully.
+
+In Window System, just 1. type “cmd” at the search panel, 2. open the Command Prompt, 3. Type “node -v” then you get an answer back as 'v.xx.xx.xx.'
+
+**3.Write the Node.js program**
+
+After everything is prepared, write the software to consume the Google Cloud Text-to-Speech API. First, prepare the code editor which you can should any text editor you like such as Atom, VSCode, or, Notepad++.
+
+After you prepared it, create a project folder and place your Private key file from step 1 in this folder. Then, open the Command Prompt/ console/ terminal at the project directory. make sure that you are in the correct directory by using ls command and you change directory using cd command. 
+
+Then, use the following commands to initiate your Node.js program and then install the necessary dependency package from Google Cloud.
+
+```bash
+$npm init 
+$npm install @google-cloud/text-to-speech
+```
+
+Then, create a new file called text2speech.js In this file, copy the following codes and paste it in your file. Please, note that you should assign your projectID and keyFilename variable with your project ID on Google Cloud and your private key name respectively.
+
+<img src="Pictures/text2speech.png">
+
+Next, create a setting file called setting.json You can construct this file with the following codes. 
+
+At “input text” you can change your text input to whatever text you want to be transcribed. at “voice” you can set the input language and input sound you like. You can also change the output file name at “outputfilename” in this setting file.
+
+
+
+
+
+
+
+
