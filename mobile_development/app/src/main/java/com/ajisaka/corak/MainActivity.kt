@@ -16,9 +16,12 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.io.IOException
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
+    private var time: Long = 0
+    private val mediaPlayer = MediaPlayer()
     private lateinit var binding: ActivityMainBinding
     private var db = Firebase.firestore
     private val mInputSize = 224
@@ -36,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
         binding.ivImage.setImageBitmap(bitmap)
-//        val bit = ((binding.ivImage).drawable as BitmapDrawable).bitmap
         val result = classifier.recognizeImage(bitmap)
         Log.d("result", result.toString())
         try {
@@ -55,32 +57,44 @@ class MainActivity : AppCompatActivity() {
                         binding.characteristic.text = document.getString("history")
                         binding.philosophy.text = document.getString("philosophy")
                         binding.batikName.text = document.getString("name")
+                        val audioUrl = document.getString("audio")
 
-                        binding.btnAudio.setOnClickListener{
-                            val audioUrl = document.getString("audio")
-                            val mediaPlayer = MediaPlayer()
+                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
 
-                            if (mediaPlayer.isPlaying) {
+
+                        binding.tbAudio.setOnClickListener{
+
+                            val name = document.getString("name")
+                            if (!binding.tbAudio.isChecked) {
+                                binding.tbAudio.isChecked = false
                                 mediaPlayer.stop()
-                                mediaPlayer.prepareAsync()
-                                mediaPlayer.seekTo(0)
-                                binding.btnAudio.text = "Play"
+                                mediaPlayer.reset()
+                                mediaPlayer.setVolume(0F, 0F)
+                                Toast.makeText(this, "Stopping Audio $name", Toast.LENGTH_SHORT)
+                                    .show()
+
                             } else {
-                                mediaPlayer.start()
-                                binding.btnAudio.text = "Pause"
+                                if(mediaPlayer.isPlaying) {
+                                    mediaPlayer.reset()
+                                }
+                                else {
+                                    try {
+                                        mediaPlayer.setDataSource(audioUrl)
+                                        mediaPlayer.prepare()
+                                        mediaPlayer.isLooping = true
+                                        mediaPlayer.setVolume(1F, 1F)
+                                        mediaPlayer.start()
+                                    } catch (e: IOException) {
+                                        e.printStackTrace()
+                                    }
+                                }
+                                Toast.makeText(this, "Playing Audio $name", Toast.LENGTH_SHORT)
+                                    .show()
+//                                Toast.makeText(this, getString(R.string.adding_to_fav), Toast.LENGTH_SHORT)
+//                                        .show()
+                                binding.tbAudio.isChecked = true
                             }
 
-                            @Suppress("DEPRECATION")
-                            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-                            try {
-                                mediaPlayer.setDataSource(audioUrl)
-                                mediaPlayer.prepare()
-                                binding.btnAudio.text = "Pause"
-
-                            } catch (e: IOException) {
-                                e.printStackTrace()
-                            }
-                            Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show()
                         }
                     }
                     .addOnFailureListener { exception ->
@@ -101,12 +115,12 @@ class MainActivity : AppCompatActivity() {
                 binding.txtPhilosophy.visibility = View.GONE
                 binding.philosophy.visibility = View.GONE
                 binding.fav.visibility = View.GONE
-                binding.btnAudio.visibility = View.GONE
+                binding.tbAudio.visibility = View.GONE
             }
         }catch (e: IndexOutOfBoundsException) {
             Log.e(ContentValues.TAG, "ArrayIndexOutOfBoundsException: " + e.message)
             Toast.makeText(
-                this, "Error : " + e.message, Toast.LENGTH_LONG)
+                    this, "Error : " + e.message, Toast.LENGTH_LONG)
                 .show()
             binding.notFound.visibility = View.VISIBLE
             binding.confidence.visibility = View.GONE
@@ -119,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             binding.txtPhilosophy.visibility = View.GONE
             binding.philosophy.visibility = View.GONE
             binding.fav.visibility = View.GONE
-            binding.btnAudio.visibility = View.GONE
+            binding.tbAudio.visibility = View.GONE
 
         }
 
@@ -152,6 +166,23 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.w(ContentValues.TAG, "Error getting documents.", exception)
             }
+    }
+    override fun onBackPressed() {
+        mediaPlayer.stop()
+        mediaPlayer.reset()
+        mediaPlayer.release()
+        val twoSecond = 2000
+        val strExit: String = getString(R.string.exit)
+        if (time.plus(twoSecond) > System.currentTimeMillis()) {
+            super.onBackPressed()
+            moveTaskToBack(true)
+            finish()
+            exitProcess(0)
+        } else {
+            Toast.makeText(this, strExit, Toast.LENGTH_SHORT)
+                    .show()
+        }
+        time = System.currentTimeMillis()
     }
 
 }

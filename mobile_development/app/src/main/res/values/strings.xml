@@ -23,5 +23,7 @@
     <string name="take_a_motive_again">Take a Motive Again</string>
     <string name="add_to_favourite">Add to Favourite</string>
     <string name="batik_tidak_diketahui">Batik tidak diketahui</string>
+    <string name="audio">Audio</string>
+    <string name="pause">Pause</string>
     <string name="play">Play</string>
 </resources>
