@@ -2,3 +2,5 @@
 .ipynb_checkpoints/
 machine_learning/BATIK/
 machine_learning/DATASET/
+machine_learning/DATASETmin/
+*.zip
