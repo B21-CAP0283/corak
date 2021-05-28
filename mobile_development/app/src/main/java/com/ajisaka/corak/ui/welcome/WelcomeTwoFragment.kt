@@ -13,22 +13,17 @@ import com.ajisaka.corak.databinding.FragmentWelcomeTwoBinding
 class WelcomeTwoFragment : Fragment() {
     private lateinit var binding: FragmentWelcomeTwoBinding
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentWelcomeTwoBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.btnNext.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_welcome_three)
         }
     }
-
 }
