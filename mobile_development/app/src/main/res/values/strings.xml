@@ -26,4 +26,5 @@
     <string name="audio">Audio</string>
     <string name="pause">Pause</string>
     <string name="play">Play</string>
+    <string name="txtAccurate">Accurate with</string>
 </resources>
