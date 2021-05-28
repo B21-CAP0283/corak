@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "318685070883",
+    "project_id": "corak-314111",
+    "storage_bucket": "corak-314111.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318685070883:android:98a75af7e8c6645ef39396",
+        "android_client_info": {
+          "package_name": "com.ajisaka.corak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318685070883-q7ra4uf5crnh0i1cpf77eodh6222r03t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBW5OksLiY1Ktp8DNBlgfYZWs4NRwfcD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318685070883-q7ra4uf5crnh0i1cpf77eodh6222r03t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

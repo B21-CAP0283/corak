@@ -1,0 +1,15 @@
+{
+    "audioConfig": {
+      "audioEncoding": "LINEAR16",
+      "pitch": 0,
+      "speakingRate": 1.00
+    },
+    "input": {
+      "text": " contoh "
+    },
+    "voice": {
+      "languageCode": "id-ID",
+      "name": "id-ID-Wavenet-A"
+    },
+    "outputFileName":"batik-dayak.mp3"
+  }
