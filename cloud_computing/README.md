@@ -48,7 +48,50 @@ Then publish it
 
 ## 2. Make cloud storage for image and mp3
 
-#
+Go to google console and choose the project, then go to Cloud storage from navigation menu
+
+Choose the one **without** 'staging' name
+
+Make 2 folder:
+- images (for saving the uploaded taken image from user )
+- mp3 (for saving the mp3 file from text2speech feature)
+
+for each of the mp3 file, we name it in accordance with the label of dataset name (batik-bali.mp3, batik-cendrawasih.mp3, etc)
+
+**For Permissions Images**
+Go to console.firebase.google.com, choose the project and go to Build > Storage in sidebar
+
+After that go to Rules column
+
+Here, we changed the permissions to access data (both read and write without Authentication), so the code looks like this:
+```
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      // allow read, write: if request.auth != null;
+      allow read, write: if true;
+    }
+  }
+}
+
+```
+Then publish it. Now users can upload image to the storage
+
+**For Permissions mp3**
+
+After we got mp3 file for each data from the text2speech, we upload it to the folder
+
+Then we can click on the 3 dots on the far for each file, click edit permissions
+
+Click Add Entry and change the entity to **Public**, left the name for **allUsers** and access for **Reader**
+
+Save then. (We do it manually one by one for each file)
+
+Now you can get the public URL by clicking on the file name and look for the public URL link
+
+Copy to put it into the value on audio key in firestore field, so when the data send back to the request, it contains link to play the audio mp3 from text2speech
+
 
 ## 3. Make mp3 file using Google text2speech API
 The modern Text-to-Speech software allows you to create a voice transcribe your readings 
