@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/ivBatikImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/roundedimage"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/iv_sample_batik"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/ivBatikImage"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toEndOf="@+id/ivBatikImage"
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/batik_name" />
+
+        <TextView
+            android:id="@+id/tv_asal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_item_name"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/ivBatikImage"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/intro_description_color"
+            android:textSize="@dimen/_10sdp"
+            card_view:layout_constraintStart_toEndOf="@+id/ivBatikImage"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
+            tools:text="Asal: " />
+
+        <TextView
+            android:id="@+id/tv_origin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_item_name"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/tv_asal"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/intro_description_color"
+            android:textSize="@dimen/_10sdp"
+            android:layout_marginTop="5dp"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_asal"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
+            tools:text="Bali" />
+
+        <Button
+            android:id="@+id/btnDetail"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/ivBatikImage"
+            android:background="@drawable/btn_brown"
+            android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
+            android:paddingEnd="10dp"
+            android:text="@string/read_more"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/ivBatikImage"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_origin"
+            tools:ignore="RtlSymmetry" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/favorite_button_background"
+            android:elevation="@dimen/_10sdp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/iv_favorite_batik"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/transparent_rect"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_favorite" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

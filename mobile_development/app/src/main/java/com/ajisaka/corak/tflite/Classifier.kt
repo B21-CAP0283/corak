@@ -11,6 +11,8 @@ import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import java.util.*
 
+
+
 class Classifier(assetManager: AssetManager, modelPath: String, labelPath: String, inputSize: Int) {
     private var interpreter: Interpreter
     private var lableList: List<String>
@@ -93,7 +95,7 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
             MAX_RESULTS,
             Comparator<Recognition> {
                     (_, _, confidence1), (_, _, confidence2)
-                -> confidence1.compareTo(confidence2) * -1
+                -> java.lang.Float.compare(confidence1, confidence2) * -1
             })
 
         for (i in lableList.indices) {
@@ -101,14 +103,14 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
             if (confidence >= THRESHOLD) {
                 pq.add(
                     Recognition("" + i,
-                        if (lableList.size > i) lableList[i] else "Unknown", confidence)
+                    if (lableList.size > i) lableList[i] else "Unknown", confidence)
                 )
             }
         }
         Log.d("Classifier", "pqsize:(%d)".format(pq.size))
 
         val recognitions = ArrayList<Recognition>()
-        val recognitionsSize = pq.size.coerceAtMost(MAX_RESULTS)
+        val recognitionsSize = Math.min(pq.size, MAX_RESULTS)
         for (i in 0 until recognitionsSize) {
             recognitions.add(pq.poll())
         }

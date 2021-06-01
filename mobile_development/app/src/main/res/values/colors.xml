@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="purple_500">#A97B4C</color>
+    <color name="purple_700">#903B0D</color>
+    <color name="teal_200">#E9D135</color>
+    <color name="teal_700">#32BA7C</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primaryColor">#A97B4C</color>
+    <color name="colorPrimaryDark">#A97B4C</color>
     <color name="darkPrimary">#903B0D</color>
     <color name="colorSecondary">#E9D135</color>
+    <color name="transparent">#00000000 </color>.
+
+    <color name="darkBlue">#7632BA</color>
+
+    <!-- colors for button style -->
+
+    <color name="gradient_start_color">#fff</color>
+    <color name="gradient_end_color">#903B0D</color>
+
+
+    <!-- colors for tab and screent text -->
+
+    <color name="tab_indicator_gray">#c4c4c4</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
+
+
+    <!-- Screens background color-->
+    <color name="bg_screen1">#f64c73</color>
+    <color name="bg_screen2">#20d2bb</color>
+    <color name="bg_screen3">#FF5454</color>
+    <color name="bg_screen4">#32BA7C</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#c4c4c4</color>
+    <color name="dot_dark_screen2">#c4c4c4</color>
+    <color name="dot_dark_screen3">#c4c4c4</color>
+    <color name="dot_dark_screen4">#c4c4c4</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#fff</color>
+    <color name="dot_light_screen2">#fff</color>
+    <color name="dot_light_screen3">#fff</color>
+    <color name="dot_light_screen4">#fff</color>
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+    </array>
 </resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_home"
+        android:title="@string/home"
+
+        android:icon="@drawable/ic_baseline_home_24"/>
+    <item
+        android:id="@+id/navigation_games"
+        android:title="@string/games"
+        android:icon="@drawable/ic_game"/>
+
+    <item
+        android:id="@+id/holder"
+        android:title=""
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/navigation_favorite"
+        android:title="@string/favorite"
+        android:icon="@drawable/ic_heart"/>
+
+    <item
+        android:id="@+id/navigation_about"
+        android:title="@string/about"
+        android:icon="@drawable/ic_baseline_help_24"/>
+
+
+</menu>
