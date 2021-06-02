@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <external-files-path name="my_images" path="Android/data/com.ajisaka.corak/files/Pictures" />
-    <external-path name="external_storage_root" path="." />
+<paths>
+
+    <!-- Context.getExternalCacheDir -->
+    <external-cache-path
+        name="labels"
+        path="labels/"/>
+
+    <external-cache-path
+        name="share"
+        path="share/"/>
+
+    <external-cache-path
+        name="images"
+        path="." />
+
+    <!-- Listing images -->
+    <!-- Context.getExternalFilesDir(String) -->
+    <external-files-path
+        name="my-pictures"
+        path="/" />
+
+    <!-- Context.getFilesDir()-->
+    <files-path
+        name="my-local-pictures"
+        path="." />
+
 </paths>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<paths xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <external-files-path name="my_images" path="Android/data/com.ajisaka.corak/files/Pictures" />-->
+<!--    <external-path name="external_storage_root" path="." />-->
+<!--</paths>-->

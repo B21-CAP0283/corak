@@ -6,7 +6,7 @@
     <string name="welcome_to_corak">Welcome to Corak</string>
     <string name="subWelcomeOne">Here you can identify Batik motives just with your camera</string>
     <string name="subWelcomeTwo">Simply take a picture of the Batik motives you want to identify, and leave the rest to us to tell you the information about the motives</string>
-    <string name="next"><![CDATA[Next >>]]></string>
+    <string name="next">Next</string>
     <string name="ready_to_try">Ready to Try?</string>
     <string name="start">Start</string>
     <string name="exit">Click back again to Exit</string>
@@ -22,9 +22,54 @@
     <string name="philosophy_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis velit eu faucibus id. Ligula morbi suspendisse nisi, venenatis morbi cursus velit eu proin. Lorem malesuada semper sed ultrices risus viverra. Proin nam ipsum ornare sed. Congue faucibus nisl.</string>
     <string name="take_a_motive_again">Take a Motive Again</string>
     <string name="add_to_favourite">Add to Favourite</string>
-    <string name="batik_tidak_diketahui">Batik tidak diketahui</string>
+    <string name="batik_tidak_diketahui">Batik Not Found</string>
     <string name="audio">Audio</string>
     <string name="pause">Pause</string>
     <string name="play">Play</string>
     <string name="txtAccurate">Accurate with</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="floaticon">FloatIcon</string>
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
+    <string name="slide_1_title">Scan Batik Motifs</string>
+    <string name="slide_1_desc">Capture or upload Batik image, Corak’s AI will identify and give you detailed info about the motif.</string>
+
+    <string name="slide_2_title">Guess Batik Motifs</string>
+    <string name="slide_2_desc">Play the games, reach your highest score and get the knowledge about Indonesian Batik as a bonus.</string>
+
+    <string name="slide_3_title">Save Your Favourite Batiks</string>
+    <string name="slide_3_desc">We made it easy to keep track of your scanning result and get back whenever you want to see them.</string>
+
+    <string name="slide_4_title">You’re all set</string>
+    <string name="slide_4_desc">Enough talking, let’s get jump into the App. Try experimenting with the features. Hope you enjoy it!</string>
+    <string name="todo">TODO</string>
+    <string name="version">By Ajisaka Team BETA version 0.0.1</string>
+    <string name="home">Home</string>
+    <string name="games">Games</string>
+    <string name="about">About</string>
+    <string name="collection_corak">corak</string>
+    <string name="scan_now">Scan Now</string>
+    <string name="play_games">Play Games</string>
+    <string name="your_fav_batik">Your Favorite Batik</string>
+    <string name="guess_the_picture">Guess the Picture</string>
+    <string name="your_highest_score">Your highest score:</string>
+    <string name="guess_the_name">Guess the Name</string>
+    <string name="favorite_batik">Favorite Batik</string>
+    <string name="read_more">Read More</string>
+    <string name="what_is_corak">What is Corak?</string>
+    <string name="corak_desc">Corak is an AI-powered mobile app that created to identify Batik motifs using smartphone camera. Corak also provides educational games to learn Indonesian Batik motifs.</string>
+    <string name="what_you_can_do_in_corak_app">What you can do in Corak App?</string>
+    <string name="why_batik">Why Batik?</string>
+    <string name="corak_desc2">One of the national character developments is the preservation of culture as a national identity. Preserving can be started from knowing and understanding. Batik, is Indonesian culture which in this modern era is less recognized by children. What makes children less familiar with batik? How well technology supported batik information in Indonesia’s learning system? That’s why Corak App is created.</string>
+    <string name="no_batik_motifs_added_yet">No batik motifs added yet!</string>
+    <string name="select_image_action">Select Image Action</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
+    <string name="title_delete_batik">Delete Batik</string>
+    <string name="msg_delete_batik_dialog">Are you sure you wants to batik %1$s.</string>
+    <string name="lbl_yes">Yes</string>
+    <string name="lbl_no">No</string>
+    <string name="delete_favorite">Delete Favorite</string>
 </resources>
