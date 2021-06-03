@@ -39,4 +39,20 @@
             android:textStyle="bold"
             tools:text="Batik Title" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/favorite_button_background"
+        android:elevation="@dimen/_10sdp">
+
+        <ImageButton
+            android:id="@+id/iv_delete"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:background="@drawable/transparent_rect"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_baseline_delete_forever_24" />
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -8,25 +8,66 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.ajisaka.corak.ui.home.HomeFragment"
-        android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_batik_details"
+            app:destination="@id/navigation_batik_details" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_setting"
+            app:destination="@id/navigation_setting" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_games"
+            app:destination="@id/navigation_games" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_games"
         android:name="com.ajisaka.corak.ui.games.GamesFragment"
         android:label="@string/games"
-        tools:layout="@layout/fragment_games" />
+        tools:layout="@layout/fragment_games" >
+        <action
+            android:id="@+id/action_navigation_games_to_navigation_setting"
+            app:destination="@id/navigation_setting" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorite"
         android:name="com.ajisaka.corak.ui.favorite.FavoriteFragment"
         android:label="@string/favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_navigation_favorite_to_navigation_batik_details"
+            app:destination="@id/navigation_batik_details" />
+        <action
+            android:id="@+id/action_navigation_favorite_to_navigation_setting"
+            app:destination="@id/navigation_setting" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_about"
         android:name="com.ajisaka.corak.ui.about.AboutFragment"
         android:label="@string/about"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_navigation_about_to_navigation_setting"
+            app:destination="@id/navigation_setting" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/navigation_batik_details"
+        android:name="com.ajisaka.corak.ui.detail.BatikDetailsFragment"
+        android:label="@string/batik_detail"
+        tools:layout="@layout/fragment_batik_details" >
+
+        <argument
+            android:name="batikDetails"
+            app:argType="com.ajisaka.corak.model.entities.FavBatik"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.ajisaka.corak.ui.setting.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

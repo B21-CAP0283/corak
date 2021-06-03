@@ -65,6 +65,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_toEndOf="@+id/tv_asal"
             android:ellipsize="end"
+            android:maxLines="1"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/intro_description_color"
             android:textSize="@dimen/_10sdp"
@@ -73,44 +74,32 @@
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
             tools:text="Bali" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDetail"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_24sdp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
             android:layout_toEndOf="@+id/ivBatikImage"
-            android:background="@drawable/btn_brown"
+            android:background="@color/darkPrimary"
+            android:backgroundTint="@color/darkPrimary"
             android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
             android:paddingEnd="10dp"
             android:text="@string/read_more"
             android:textColor="@color/white"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_8sdp"
+            card_view:cornerRadius="@dimen/_35sdp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/ivBatikImage"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_origin"
+            card_view:layout_constraintVertical_bias="0.0"
+            card_view:strokeColor="@color/white"
             tools:ignore="RtlSymmetry" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|end"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/favorite_button_background"
-            android:elevation="@dimen/_10sdp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent">
 
-            <ImageButton
-                android:id="@+id/iv_favorite_batik"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/transparent_rect"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_favorite" />
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

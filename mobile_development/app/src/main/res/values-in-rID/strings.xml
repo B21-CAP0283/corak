@@ -8,6 +8,7 @@
     <string name="subWelcomeTwo">Simply take a picture of the Batik motives you want to identify, and leave the rest to us to tell you the information about the motives</string>
     <string name="next">Next</string>
     <string name="ready_to_try">Ready to Try?</string>
+    <string name="save_result_scan">Save Result Scan</string>
     <string name="start">Start</string>
     <string name="exit">Click back again to Exit</string>
     <string name="bgimg">bgImg</string>
@@ -21,7 +22,6 @@
     <string name="philosophy">Philosophy</string>
     <string name="philosophy_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis velit eu faucibus id. Ligula morbi suspendisse nisi, venenatis morbi cursus velit eu proin. Lorem malesuada semper sed ultrices risus viverra. Proin nam ipsum ornare sed. Congue faucibus nisl.</string>
     <string name="take_a_motive_again">Take a Motive Again</string>
-    <string name="add_to_favourite">Add to Favourite</string>
     <string name="batik_tidak_diketahui">Batik Not Found</string>
     <string name="audio">Audio</string>
     <string name="pause">Pause</string>
@@ -72,4 +72,14 @@
     <string name="msg_delete_batik_dialog">Are you sure you wants to batik %1$s.</string>
     <string name="lbl_yes">Yes</string>
     <string name="lbl_no">No</string>
+    <string name="delete_favorite">Delete Favorite</string>
+    <string name="batik_detail">Batik Detail</string>
+    <string name="holder">holder</string>
+    <string name="msg_added_to_favorites">You have added to your favorites.</string>
+    <string name="msg_removed_from_favorite">You have removed batik motifs from your favorites.</string>
+    <string name="number_123">0</string>
+    <string name="save_batik">You successfully saved your</string>
+    <string name="playing_audio">Playing Audio</string>
+    <string name="stopping_audio">Stopping Audio</string>
+    <string name="language">Language</string>
 </resources>

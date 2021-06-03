@@ -11,6 +11,7 @@ import com.ajisaka.corak.databinding.ItemFavoriteCardBinding
 import com.ajisaka.corak.model.entities.FavBatik
 import com.ajisaka.corak.ui.detail.DetailActivity
 import com.ajisaka.corak.ui.favorite.FavoriteFragment
+import com.ajisaka.corak.ui.home.HomeFragment
 import com.bumptech.glide.Glide
 
 
@@ -50,29 +51,22 @@ class FavBatikAdapter(private val fragment: Fragment) :
         Glide.with(fragment)
             .load(batik.image)
             .centerCrop()
-            .placeholder(R.drawable.img_not_found)
+            .placeholder(R.drawable.bg_image)
             .into(holder.ivBatikImage)
 
         holder.tvTitle.text = batik.name
         holder.tvOrigin.text = batik.origin
         holder.btnDetail.setOnClickListener{
-            val intent = Intent(fragment.context, DetailActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra("EXTRA_NAME", batik.name)
-            intent.putExtra("EXTRA_CONFIDENCE", batik.confidence)
-            intent.putExtra("EXTRA_ORIGIN", batik.origin)
-            intent.putExtra("EXTRA_IMAGE", batik.image)
-            intent.putExtra("EXTRA_AUDIO", batik.audio)
-            intent.putExtra("EXTRA_CHARACTERISTIC", batik.characteristic)
-            intent.putExtra("EXTRA_PHILOSOPHY", batik.philosophy)
-            fragment.context?.startActivity(intent)
-        }
-
-        holder.btnFav.setOnClickListener{
-            if (fragment is FavoriteFragment) {
-                fragment.deleteStudent(batik)
+            if (fragment is FavoriteFragment){
+                fragment.batikDetails(batik)
             }
         }
+
+//        holder.btnFav.setOnClickListener{
+//            if (fragment is FavoriteFragment) {
+//                fragment.deleteStudent(batik)
+//            }
+//        }
     }
     /**
      * Gets the number of items in the list
@@ -95,6 +89,5 @@ class FavBatikAdapter(private val fragment: Fragment) :
         val tvTitle = view.tvItemName
         val tvOrigin = view.tvOrigin
         val btnDetail = view.btnDetail
-        val btnFav = view.ivFavoriteBatik
     }
 }

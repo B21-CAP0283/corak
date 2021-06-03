@@ -1,30 +1,31 @@
 package com.ajisaka.corak.ui.splash
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.ajisaka.corak.MainActivity
 import com.ajisaka.corak.R
+import com.ajisaka.corak.databinding.ActivitySplashBinding
 import com.ajisaka.corak.ui.welcome.ViewsSliderActivity
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        val splashBinding: ActivitySplashBinding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(splashBinding.root)
 
-//        val i = Intent(this, MainActivity::class.java)
-//        val timer: Thread = object : Thread() {
-//            override fun run() {
-//                try {
-//                    sleep(3000)
-//                } catch (e: InterruptedException) {
-//                    e.printStackTrace()
-//                } finally {
-//                    startActivity(i)
-//                }
-//            }
-//        }
-//        timer.start()
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            @Suppress("DEPRECATION")
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+        supportActionBar?.hide()
         if (restorePrefData()) {
             val i = Intent(applicationContext, MainActivity::class.java)
             val timer: Thread = object : Thread() {

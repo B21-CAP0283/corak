@@ -4,30 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailActivity">
-    <include
-        android:id="@+id/include_toolbar"
-        layout="@layout/layout_toolbar_back"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"/>
+    tools:context=".ui.detail.BatikDetailsFragment">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_marginTop="@dimen/_49sdp"
         android:paddingTop="?attr/actionBarSize"
-        android:elevation="0dp">
+        android:elevation="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_toolbar">
+            app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
                 android:id="@+id/ivImage"
@@ -58,22 +53,22 @@
                 android:textColor="@color/darkPrimary"
                 android:textSize="18sp"
                 android:visibility="gone" />
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="top|end"-->
-<!--                android:layout_margin="@dimen/_10sdp"-->
-<!--                android:background="@drawable/favorite_button_background"-->
-<!--                android:elevation="@dimen/_10sdp">-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/favorite_button_background"
+                android:elevation="@dimen/_10sdp">
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/iv_favorite_batik"-->
-<!--                    android:layout_width="24dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/transparent_rect"-->
-<!--                    android:contentDescription="@string/todo"-->
-<!--                    android:src="@drawable/ic_favorite_border" />-->
-<!--            </LinearLayout>-->
+                <ImageButton
+                    android:id="@+id/iv_favorite_batik"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_rect"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_favorite_border" />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/linearAudio"
                 android:layout_width="@dimen/_34sdp"
@@ -82,20 +77,20 @@
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:background="@drawable/favorite_button_background"
                 android:elevation="@dimen/_10sdp">
-            <ToggleButton
-                android:id="@+id/tb_audio"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_26sdp"
-                android:contentDescription="@string/audio"
-                android:textOff=""
-                android:textOn=""
-                android:focusable="false"
-                android:layout_gravity="right"
-                android:background="@drawable/audio_toggle"
-                android:focusableInTouchMode="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlHardcoded" />
+                <ToggleButton
+                    android:id="@+id/tb_audio"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_26sdp"
+                    android:contentDescription="@string/audio"
+                    android:textOff=""
+                    android:textOn=""
+                    android:focusable="false"
+                    android:layout_gravity="right"
+                    android:background="@drawable/audio_toggle"
+                    android:focusableInTouchMode="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlHardcoded" />
             </LinearLayout>
             <TextView
                 android:id="@+id/txtName"

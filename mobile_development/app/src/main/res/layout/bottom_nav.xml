@@ -18,18 +18,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_menu"
-        android:background="@color/transparent" />
-
-
+        android:background="@drawable/transparent_rect" />
     
 </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_camera_enhance_24"
-        app:maxImageSize="40dp"
-        android:backgroundTint="#E9D135"
+        android:backgroundTint="@color/darkPrimary"
+        android:contentDescription="@string/floaticon"
+        android:outlineAmbientShadowColor="@color/transparent"
+        android:outlineSpotShadowColor="@color/transparent"
+        android:src="@drawable/ic_scan_white"
+        android:tint="@color/white"
+        app:borderWidth="0dp"
+        app:elevation="8dp"
+        android:clickable="true"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:maxImageSize="32dp"
+        app:tint="@color/white"
+        android:focusable="true"
         app:layout_anchor="@id/bottomAppBar"
 
         />

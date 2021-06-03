@@ -13,7 +13,10 @@ class FavBatikViewModel(private val repository: FavBatikRepository) : ViewModel(
     }
 
     val allBatikList: LiveData<List<FavBatik>> = repository.allBatikList.asLiveData()
-
+    val favoriteBatik: LiveData<List<FavBatik>> = repository.favoriteBatik.asLiveData()
+    fun update(batik: FavBatik) = viewModelScope.launch {
+        repository.updateFavBatikData(batik)
+    }
     fun delete(batik: FavBatik) = viewModelScope.launch {
         // Call the repository function and pass the details.
         repository.deleteFavBatikData(batik)

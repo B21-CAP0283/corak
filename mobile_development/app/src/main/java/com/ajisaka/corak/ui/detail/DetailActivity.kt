@@ -3,17 +3,25 @@ package com.ajisaka.corak.ui.detail
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
-import android.content.ContextWrapper
+import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.AudioManager
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import com.ajisaka.corak.MainActivity
 import com.ajisaka.corak.R
 import com.ajisaka.corak.application.FavBatikApplication
 import com.ajisaka.corak.databinding.ActivityDetailBinding
@@ -24,37 +32,34 @@ import com.ajisaka.corak.utils.Constants
 import com.ajisaka.corak.viewmodel.FavBatikViewModel
 import com.ajisaka.corak.viewmodel.FavBatikViewModelFactory
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
-import java.io.OutputStream
+import java.net.URI
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 
 @Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
     private val mediaPlayer = MediaPlayer()
     private lateinit var binding: ActivityDetailBinding
     private var db = Firebase.firestore
-    private var mImagePath: String = ""
-    companion object {
-        const val EXTRA_NAME = "EXTRA_NAME"
-        const val EXTRA_CONFIDENCE = "EXTRA_CONFIDENCE"
-        const val EXTRA_ORIGIN = "EXTRA_ORIGIN"
-        const val EXTRA_IMAGE = "EXTRA_IMAGE"
-        const val EXTRA_AUDIO = "EXTRA_AUDIO"
-        const val EXTRA_CHARACTERISTIC = "EXTRA_CHARACTERISTIC"
-        const val EXTRA_PHILOSOPHY = "EXTRA_PHILOSOPHY"
 
-        private const val IMAGE_DIRECTORY = "FavBatikImages"
-    }
+    private var pathImage: String? = ""
     private val mFavBatikViewModel: FavBatikViewModel by viewModels {
         FavBatikViewModelFactory((application as FavBatikApplication).repository)
     }
+
     private fun setActionBarTitle(title: String) {
         supportActionBar?.title = title
+    }
+    companion object {
+        private const val IMAGE_DIRECTORY = "FavBatikImages"
     }
     private var title: String = "Detail Batik"
     private val mInputSize = 224
@@ -69,22 +74,53 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            @Suppress("DEPRECATION")
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+        supportActionBar?.hide()
+//        initDataOffline()
+        initClassifier()
+        initFireabase()
+        binding.includeToolbar.btnBack.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
 
-        setSupportActionBar(binding.toolbar)
-        binding.toolbar.navigationIcon = resources.getDrawable(
-            R.drawable.ic_baseline_arrow_back_24,
-            null
-        )
-        binding.toolbar.setNavigationOnClickListener { finish() }
+//        val fileUri = Uri.parse(uriImageFromGalery)
+        if (intent.getStringExtra("resultImage") != null){
+            pathImage = intent.getStringExtra("resultImage")
+            Log.d("Get Data",pathImage.toString())
+            val bitmap = BitmapFactory.decodeFile(pathImage)
+//            val byteArray = intent.getByteArrayExtra("image")
+//            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
 
-        initDataOffline()
-        if (intent.getByteArrayExtra("image") != null){
-            initClassifier()
-            initFireabase()
-            val byteArray = intent.getByteArrayExtra("image")
-            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
-            mImagePath = saveImageToInternalStorage(bitmap)
-            Log.i("ImagePath", mImagePath)
+            // Set Capture Image bitmap to the imageView using Glide
+            Glide.with(this@DetailActivity)
+                .load(bitmap)
+                .centerCrop()
+                .into(binding.ivImage)
+            // classification with intent
+            runClassifier(bitmap)
+        }else {
+            Log.d("Error no data", "Else")
+        }
+        if(intent.getStringExtra("uriImage") != null){
+//            val filePath = File(URI(uriImageFromGalery.toString()))
+//            Log.d("pathImageGalery", filePath.toString())
+            val uriImageFromGalery = Uri.parse(intent.getStringExtra("uriImage"))
+            pathImage = getRealPathFromDocumentUri(applicationContext, uriImageFromGalery)
+            val bitmap = BitmapFactory.decodeFile(pathImage)
+//            val byteArray = intent.getByteArrayExtra("image")
+//            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
+
             // Set Capture Image bitmap to the imageView using Glide
             Glide.with(this@DetailActivity)
                 .load(bitmap)
@@ -95,96 +131,119 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun initDataOffline() {
-        binding.batikName.text = intent.getStringExtra(EXTRA_NAME)
-        val txtProfile = binding.batikName.text
-        title = txtProfile.toString()
-        binding.toolbar.title = title
-        setActionBarTitle(title)
-        val txtAccurate = getString(R.string.txtAccurate)
-        val confidence = intent.getStringExtra(EXTRA_CONFIDENCE)
-        binding.confidence.text = "$confidence $txtAccurate"
-        binding.origin.text = intent.getStringExtra(EXTRA_ORIGIN)
-        binding.characteristic.text = intent.getStringExtra(EXTRA_CHARACTERISTIC)
-        binding.philosophy.text = intent.getStringExtra(EXTRA_PHILOSOPHY)
-        Glide.with(applicationContext)
-            .load(intent.getStringExtra(EXTRA_IMAGE))
-            .placeholder(R.drawable.img_not_found)
-            .into(binding.ivImage)
-        binding.fav.visibility = View.GONE
-        binding.tbAudio.setOnClickListener {
 
-            val name = intent.getStringExtra(EXTRA_NAME)
-            if (!binding.tbAudio.isChecked) {
-                binding.tbAudio.isChecked = false
-                mediaPlayer.stop()
-                mediaPlayer.reset()
-                mediaPlayer.setVolume(0F, 0F)
-                Toast.makeText(this, "Stopping Audio $name", Toast.LENGTH_SHORT)
-                    .show()
-
-            } else {
-                if (mediaPlayer.isPlaying) {
-                    Log.d("Debug Audio", mediaPlayer.toString())
-                    mediaPlayer.reset()
-                } else {
-                    try {
-                        mediaPlayer.setDataSource(intent.getStringExtra(EXTRA_AUDIO))
-                        mediaPlayer.prepare()
-                        mediaPlayer.isLooping = false
-                        mediaPlayer.setVolume(1F, 1F)
-                        mediaPlayer.start()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-                Toast.makeText(this, "Playing Audio $name", Toast.LENGTH_SHORT)
-                    .show()
-                binding.tbAudio.isChecked = true
-            }
-
-        }
-
+//    @SuppressLint("SetTextI18n")
+//    private fun initDataOffline() {
+//        binding.batikName.text = intent.getStringExtra(EXTRA_NAME)
+//        val txtProfile = binding.batikName.text
+//        val txtAccurate = getString(R.string.txtAccurate)
+//        val confidence = intent.getStringExtra(EXTRA_CONFIDENCE)
+//        binding.confidence.text = "$confidence $txtAccurate"
+//        binding.origin.text = intent.getStringExtra(EXTRA_ORIGIN)
+//        binding.characteristic.text = intent.getStringExtra(EXTRA_CHARACTERISTIC)
+//        binding.philosophy.text = intent.getStringExtra(EXTRA_PHILOSOPHY)
+//        Glide.with(applicationContext)
+//            .load(intent.getStringExtra(EXTRA_IMAGE))
+//            .placeholder(R.drawable.bg_image)
+//            .into(binding.ivImage)
+//        binding.fav.visibility = View.GONE
+//        binding.tbAudio.setOnClickListener {
+//
+//            val name = intent.getStringExtra(EXTRA_NAME)
+//            if (!binding.tbAudio.isChecked) {
+//                binding.tbAudio.isChecked = false
+//                mediaPlayer.stop()
+//                mediaPlayer.reset()
+//                mediaPlayer.setVolume(0F, 0F)
+//                Toast.makeText(this, "Stopping Audio $name", Toast.LENGTH_SHORT)
+//                    .show()
+//
+//            } else {
+//                if (mediaPlayer.isPlaying) {
+//                    Log.d("Debug Audio", mediaPlayer.toString())
+//                    mediaPlayer.reset()
+//                } else {
+//                    try {
+//                        mediaPlayer.setDataSource(intent.getStringExtra(EXTRA_AUDIO))
+//                        mediaPlayer.prepare()
+//                        mediaPlayer.isLooping = false
+//                        mediaPlayer.setVolume(1F, 1F)
+//                        mediaPlayer.start()
+//                    } catch (e: IOException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                Toast.makeText(this, "Playing Audio $name", Toast.LENGTH_SHORT)
+//                    .show()
+//                binding.tbAudio.isChecked = true
+//            }
+//
+//        }
+//
+////        binding.ivFavoriteBatik.setOnClickListener {
+////
+////            navArgs<Bati>().dishDetails.favoriteDish = !args.dishDetails.favoriteDish
+////
+////            mFavDishViewModel.update(args.dishDetails)
+////
+////            if (args.dishDetails.favoriteDish) {
+////                mBinding!!.ivFavoriteDish.setImageDrawable(
+////                    ContextCompat.getDrawable(
+////                        requireActivity(),
+////                        R.drawable.ic_favorite_selected
+////                    )
+////                )
+////
+////                Toast.makeText(
+////                    requireActivity(),
+////                    resources.getString(R.string.msg_added_to_favorites),
+////                    Toast.LENGTH_SHORT
+////                ).show()
+////            } else {
+////                mBinding!!.ivFavoriteDish.setImageDrawable(
+////                    ContextCompat.getDrawable(
+////                        requireActivity(),
+////                        R.drawable.ic_favorite_unselected
+////                    )
+////                )
+////
+////                Toast.makeText(
+////                    requireActivity(),
+////                    resources.getString(R.string.msg_removed_from_favorite),
+////                    Toast.LENGTH_SHORT
+////                ).show()
+////            }
+////        }
+//
+//    }
+    private fun getRealPathFromDocumentUri(context: Context, uri: Uri): String {
+    var filePath = ""
+    val p: Pattern = Pattern.compile("(\\d+)$")
+    val m: Matcher = p.matcher(uri.toString())
+    if (!m.find()) {
+        Log.e(
+            DetailActivity::class.java.simpleName,
+            "ID for requested image not found: $uri"
+        )
+        return filePath
     }
-
-    private fun saveImageToInternalStorage(bitmap: Bitmap): String {
-
-        // Get the context wrapper instance
-        val wrapper = ContextWrapper(applicationContext)
-
-        // Initializing a new file
-        // The bellow line return a directory in internal storage
-        /**
-         * The Mode Private here is
-         * File creation mode: the default mode, where the created file can only
-         * be accessed by the calling application (or all applications sharing the
-         * same user ID).
-         */
-        var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
-
-        // Mention a file name to save the image
-        file = File(file, "${UUID.randomUUID()}.jpg")
-
-        try {
-            // Get the file output stream
-            val stream: OutputStream = FileOutputStream(file)
-
-            // Compress bitmap
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-
-            // Flush the stream
-            stream.flush()
-
-            // Close stream
-            stream.close()
-        } catch (e: IOException) { // Catch the exception
-            e.printStackTrace()
+    val imgId: String = m.group()
+    val column = arrayOf(MediaStore.Images.Media.DATA)
+    val sel = MediaStore.Images.Media._ID + "=?"
+    val cursor: Cursor? = context.contentResolver.query(
+        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+        column, sel, arrayOf(imgId), null
+    )
+    val columnIndex: Int? = cursor?.getColumnIndex(column[0])
+    if (cursor != null) {
+        if (cursor.moveToFirst()) {
+            filePath = columnIndex?.let { cursor.getString(it) }.toString()
         }
-
-        // Return the saved image absolute path
-        return file.absolutePath
     }
+    cursor?.close()
+    return filePath
+}
+
 
     @SuppressLint("SetTextI18n")
     @ExperimentalStdlibApi
@@ -201,7 +260,7 @@ class DetailActivity : AppCompatActivity() {
         try {
             val percentage = result[0].confidence
             val percentConfidence = PercentageHelper.toPercentage(percentage, 2)
-            if (percentConfidence > PercentageHelper.toPercentage(0.80f, 2)) {
+            if (percentConfidence > PercentageHelper.toPercentage(0.70f, 2)) {
                 runOnUiThread {
                     val title = result[0].title
                     val trim = replaceSpace(title).lowercase()
@@ -229,7 +288,12 @@ class DetailActivity : AppCompatActivity() {
                                     mediaPlayer.stop()
                                     mediaPlayer.reset()
                                     mediaPlayer.setVolume(0F, 0F)
-                                    Toast.makeText(this, "Stopping Audio $name", Toast.LENGTH_SHORT)
+                                    val stop = getString(R.string.stopping_audio)
+                                    Snackbar.make(
+                                        window.decorView.findViewById(android.R.id.content),
+                                        "$stop $name",
+                                        Snackbar.LENGTH_SHORT
+                                    )
                                         .show()
 
                                 } else {
@@ -247,7 +311,12 @@ class DetailActivity : AppCompatActivity() {
                                             e.printStackTrace()
                                         }
                                     }
-                                    Toast.makeText(this, "Playing Audio $name", Toast.LENGTH_SHORT)
+                                    val play = getString(R.string.playing_audio)
+                                    Snackbar.make(
+                                        window.decorView.findViewById(android.R.id.content),
+                                        "$play $name",
+                                        Snackbar.LENGTH_SHORT
+                                    )
                                         .show()
                                     binding.tbAudio.isChecked = true
                                 }
@@ -255,7 +324,7 @@ class DetailActivity : AppCompatActivity() {
                             }
                             binding.fav.setOnClickListener {
                                 val favBatikDetails = FavBatik(
-                                    mImagePath,
+                                    pathImage.toString(),
                                     Constants.BATIK_IMAGE_SOURCE_LOCAL,
                                     percentConfidence,
                                     audioUrl.toString(),
@@ -263,18 +332,19 @@ class DetailActivity : AppCompatActivity() {
                                     origin.toString(),
                                     characteristic.toString(),
                                     philosophy.toString(),
-                                    true
+                                    false
                                 )
                                 Log.d("Data Favorite", favBatikDetails.toString())
                                 if(!favBatikDetails.favoriteBatik){
-                                    binding.fav.visibility = View.GONE
-                                }else{
                                     mFavBatikViewModel.insert(favBatikDetails)
+                                    binding.fav.visibility = View.GONE
+
                                 }
+                                val save_batik = getString(R.string.save_batik)
 
                                 Toast.makeText(
                                     this@DetailActivity,
-                                    "You successfully added your favorite dish details.",
+                                    "$save_batik $name",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
@@ -328,7 +398,6 @@ class DetailActivity : AppCompatActivity() {
 //                )
 //                    .show()
             runOnUiThread {
-
                 binding.notFound.visibility = View.VISIBLE
                 binding.confidence.visibility = View.GONE
                 binding.txtName.visibility = View.GONE

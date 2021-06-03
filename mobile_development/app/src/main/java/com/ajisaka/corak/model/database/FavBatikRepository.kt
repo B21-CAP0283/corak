@@ -12,7 +12,11 @@ class FavBatikRepository(private val favBatikDao: FavBatikDao) {
     }
 
     val allBatikList: Flow<List<FavBatik>> = favBatikDao.getAllBatikList()
-
+    @WorkerThread
+    suspend fun updateFavBatikData(favBatik: FavBatik) {
+        favBatikDao.updateFavBatikDetails(favBatik)
+    }
+    val favoriteBatik: Flow<List<FavBatik>> = favBatikDao.getFavoriteBatikList()
     @WorkerThread
     suspend fun deleteFavBatikData(favBatik: FavBatik) {
         favBatikDao.deleteFavDishDetails(favBatik)

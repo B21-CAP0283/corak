@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
-
-    <include
-        android:id="@+id/include_toolbar"
-        layout="@layout/layout_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -32,13 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu"
         tools:targetApi="p" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="-2dp"
-        android:background="#c4c4c4"
-        android:elevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_camera"
         android:layout_width="wrap_content"
@@ -69,6 +53,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        android:layout_marginTop="65dp"
         app:navGraph="@navigation/mobile_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,11 +3,10 @@
 package com.ajisaka.corak.ui.welcome
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,15 +28,24 @@ class ViewsSliderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityViewSliderBinding.inflate(layoutInflater)
-
-
+        setContentView(binding.root)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            @Suppress("DEPRECATION")
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+        supportActionBar?.hide()
         // when this activity is about to be launch we need to check if its openened before or not
         if (restorePrefData()) {
             val mainActivity = Intent(applicationContext, MainActivity::class.java)
             startActivity(mainActivity)
             finish()
         }
-        setContentView(binding.root)
+
         init()
     }
 

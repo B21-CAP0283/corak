@@ -7,12 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.ajisaka.corak.R
+import com.ajisaka.corak.databinding.ItemFavoriteCardBinding
 import com.ajisaka.corak.databinding.ItemHomeHorizontalBinding
 import com.ajisaka.corak.model.entities.FavBatik
+import com.ajisaka.corak.ui.favorite.FavoriteFragment
+import com.ajisaka.corak.ui.home.HomeFragment
+import com.ajisaka.corak.ui.home.HomeFragmentDirections
 import com.bumptech.glide.Glide
 
 
-class FavBatikHomeAdapter(private val fragment: Fragment,private val itemAdapterCallback : ItemAdapterCallback,) :
+class FavBatikHomeAdapter(private val fragment: Fragment) :
     RecyclerView.Adapter<FavBatikHomeAdapter.ViewHolder>() {
 
     private var listBatik: List<FavBatik> = listOf()
@@ -24,9 +28,9 @@ class FavBatikHomeAdapter(private val fragment: Fragment,private val itemAdapter
      * {@link ViewHolder} and initializes some private fields to be used by RecyclerView.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_home_horizontal, parent, false)
-        return ViewHolder(view)
+        val binding: ItemHomeHorizontalBinding =
+            ItemHomeHorizontalBinding.inflate(LayoutInflater.from(fragment.context), parent, false)
+        return ViewHolder(binding)
     }
 
     /**
@@ -40,9 +44,26 @@ class FavBatikHomeAdapter(private val fragment: Fragment,private val itemAdapter
      * layout file.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        holder.bind(listBatik[position], itemAdapterCallback)
+        val batik = listBatik[position]
+//        holder.bind(listBatik[position])
         // Load the dish image in the ImageView.
+        Glide.with(fragment)
+            .load(batik.image)
+            .centerCrop()
+            .placeholder(R.drawable.bg_image)
+            .into(holder.ivBatik)
+        holder.tvBatik.text = batik.name
+        holder.itemView.setOnClickListener{
+            if (fragment is HomeFragment){
+                fragment.batikDetails(batik)
+            }
+        }
+        holder.ivBatikDelete.setOnClickListener {
+            if (fragment is HomeFragment) {
+                fragment.deleteStudent(batik)
+            }
+        }
+
     }
     /**
      * Gets the number of items in the list
@@ -59,26 +80,10 @@ class FavBatikHomeAdapter(private val fragment: Fragment,private val itemAdapter
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
-    class ViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(view: ItemHomeHorizontalBinding) : RecyclerView.ViewHolder(view.root) {
         // Holds the TextView that will add each item to
-        private val binding = ItemHomeHorizontalBinding.bind(itemView)
-        fun bind(data : FavBatik, itemAdapterCallback: ItemAdapterCallback) {
-            itemView.apply {
-                Glide.with(itemView)
-                    .load(data.image)
-                    .centerCrop()
-                    .placeholder(R.drawable.img_not_found)
-                    .into(binding.ivPoster)
-
-                binding.tvBatikName.text = data.name
-                itemView.setOnClickListener {
-                    itemAdapterCallback.onClick(it, data)
-                }
-            }
-
-        }
-    }
-    interface ItemAdapterCallback {
-        fun onClick(v: View, data:FavBatik)
+        val tvBatik = view.tvBatikName
+        val ivBatik = view.ivPoster
+        val ivBatikDelete = view.ivDelete
     }
 }

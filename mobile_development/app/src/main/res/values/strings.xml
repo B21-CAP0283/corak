@@ -21,7 +21,7 @@
     <string name="philosophy">Philosophy</string>
     <string name="philosophy_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis velit eu faucibus id. Ligula morbi suspendisse nisi, venenatis morbi cursus velit eu proin. Lorem malesuada semper sed ultrices risus viverra. Proin nam ipsum ornare sed. Congue faucibus nisl.</string>
     <string name="take_a_motive_again">Take a Motive Again</string>
-    <string name="add_to_favourite">Add to Favourite</string>
+    <string name="save_result_scan">Save Result Scan</string>
     <string name="batik_tidak_diketahui">Batik Not Found</string>
     <string name="audio">Audio</string>
     <string name="pause">Pause</string>
@@ -68,8 +68,20 @@
     <string name="gallery">Gallery</string>
 
     <string name="title_delete_batik">Delete Batik</string>
-    <string name="msg_delete_batik_dialog">Are you sure you wants to batik %1$s.</string>
+    <string name="msg_delete_batik_dialog">Are you sure you want to delete batik motifs %1$s.</string>
     <string name="lbl_yes">Yes</string>
     <string name="lbl_no">No</string>
     <string name="delete_favorite">Delete Favorite</string>
+    <string name="batik_detail">Batik Detail</string>
+    <string name="holder">holder</string>
+    <string name="msg_added_to_favorites">You have added batik motifs to your favorites.</string>
+    <string name="msg_removed_from_favorite">You have removed batik motifs from favorites.</string>
+    <string name="number_123">0</string>
+    <string name="save_batik">You successfully saved your</string>
+    <string name="playing_audio">Playing Audio</string>
+    <string name="stopping_audio">Stopping Audio</string>
+    <string name="language">Language</string>
+    <string name="underscore">_</string>
+    <string name="games_arena">Games Arena</string>
+    <string name="textview">TextView</string>
 </resources>
