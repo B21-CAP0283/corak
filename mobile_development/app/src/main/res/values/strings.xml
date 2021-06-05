@@ -12,7 +12,6 @@
     <string name="exit">Click back again to Exit</string>
     <string name="bgimg">bgImg</string>
     <string name="akurasi">98.7% Accurate with</string>
-    <string name="name">Name</string>
     <string name="batik_name">Batik Bali</string>
     <string name="bali">Bali</string>
     <string name="origin">Origin</string>
@@ -44,7 +43,7 @@
     <string name="slide_4_title">You’re all set</string>
     <string name="slide_4_desc">Enough talking, let’s get jump into the App. Try experimenting with the features. Hope you enjoy it!</string>
     <string name="todo">TODO</string>
-    <string name="version">By Ajisaka Team BETA version 0.0.1</string>
+    <string name="version">By Ajisaka Team BETA version 1.0.0</string>
     <string name="home">Home</string>
     <string name="games">Games</string>
     <string name="about">About</string>
@@ -84,4 +83,13 @@
     <string name="underscore">_</string>
     <string name="games_arena">Games Arena</string>
     <string name="textview">TextView</string>
+    <string name="welcome">Welcome</string>
+    <string name="name">Name</string>
+    <string name="please_enter_your_name">Please enter your name.</string>
+    <string name="finish">FINISH</string>
+    <string name="hey_congratulations">Hey, Congratulations!</string>
+    <string name="image">image</string>
+    <string name="question">What is the name of the motif from the image below?</string>
+    <string name="score">Score</string>
+    <string name="_1234_point">1234 Point</string>
 </resources>

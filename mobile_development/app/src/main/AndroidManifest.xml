@@ -25,6 +25,9 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Corak">
+        <activity android:name=".ui.games.gtn.ResultActivity" />
+        <activity android:name=".ui.games.gtn.QuizQuestionActivity" />
+        <activity android:name=".ui.games.gtn.GuessTheNameActivity" />
         <activity android:name=".ui.detail.DetailActivity" />
         <activity android:name=".ui.welcome.ViewsSliderActivity" />
         <activity android:name=".ui.splash.SplashActivity">
@@ -35,6 +38,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

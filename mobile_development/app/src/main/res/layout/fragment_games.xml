@@ -31,6 +31,86 @@
             android:text="@string/games_arena"
             android:textColor="@color/white" />
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/reactangle_cardview_games"
+            android:layout_width="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="24dp"
+            android:layout_height="160dp">
+
+            <TextView
+                android:id="@+id/tvGuess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/guess_the_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintStart_toEndOf="@+id/iv_guess_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvscore"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="@string/your_highest_score"-->
+<!--                android:textColor="#4C4C4C"-->
+<!--                android:textSize="@dimen/_10sdp"-->
+<!--                android:layout_marginStart="@dimen/_10sdp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/iv_guess_name"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tvGuess"-->
+<!--                tools:ignore="SmallSp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvScoreName"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="@string/number_123"-->
+<!--                android:textColor="#4C4C4C"-->
+<!--                android:textSize="@dimen/_10sdp"-->
+<!--                android:layout_marginStart="@dimen/_5sdp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/tvscore"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tvGuess"-->
+<!--                tools:ignore="SmallSp" />-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_games_name"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:background="@drawable/btn_green"
+                android:drawableEnd="@drawable/ic_white_play_circle_filled_24"
+                android:paddingEnd="10dp"
+                android:text="@string/play_games"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:backgroundTint="@color/teal_700"
+                app:cornerRadius="@dimen/_35sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_guess_name"
+                app:layout_constraintTop_toBottomOf="@+id/tvGuess"
+                app:strokeColor="@color/transparent"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/iv_guess_name"
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/iv_guess_the_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
            android:background="@drawable/reactangle_cardview_games"
            android:layout_width="match_parent"
            android:layout_marginStart="15dp"
@@ -52,53 +132,51 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/your_highest_score"
-                android:textColor="#4C4C4C"
-                android:textSize="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                tools:ignore="SmallSp" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView6"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="12dp"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="@string/your_highest_score"-->
+<!--                android:textColor="#4C4C4C"-->
+<!--                android:textSize="@dimen/_10sdp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView6"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView5"-->
+<!--                tools:ignore="SmallSp" />-->
 
-            <TextView
-                android:id="@+id/tvScorePicture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/number_123"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:textColor="#4C4C4C"
-                android:textSize="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                tools:ignore="SmallSp" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvScorePicture"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="@string/number_123"-->
+<!--                android:layout_marginStart="@dimen/_5sdp"-->
+<!--                android:textColor="#4C4C4C"-->
+<!--                android:textSize="@dimen/_10sdp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/textView6"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView5"-->
+<!--                tools:ignore="SmallSp" />-->
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/button"
-                app:strokeColor="@color/white"
-                app:cornerRadius="@dimen/_35sdp"
-                app:backgroundTint="@color/teal_700"
-                android:layout_height="@dimen/_35sdp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_marginStart="@dimen/_19sdp"
-                android:layout_marginTop="@dimen/_18sdp"
                 android:layout_marginBottom="@dimen/_14sdp"
-                android:layout_marginEnd="@dimen/_24sdp"
                 android:background="@drawable/btn_green"
                 android:drawableEnd="@drawable/ic_white_play_circle_filled_24"
                 android:paddingEnd="10dp"
                 android:text="@string/play_games"
                 android:textColor="@color/white"
                 android:textSize="12sp"
+                app:backgroundTint="@color/teal_700"
+                app:cornerRadius="@dimen/_35sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:strokeColor="@color/white"
                 tools:ignore="RtlSymmetry" />
 
             <ImageView
@@ -141,88 +219,7 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/reactangle_cardview_games"
-            android:layout_width="match_parent"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="24dp"
-            android:layout_height="160dp">
 
-            <TextView
-                android:id="@+id/tvGuess"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/guess_the_name"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/iv_guess_name"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvscore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/your_highest_score"
-                android:textColor="#4C4C4C"
-                android:textSize="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/iv_guess_name"
-                app:layout_constraintTop_toBottomOf="@+id/tvGuess"
-                tools:ignore="SmallSp" />
-
-            <TextView
-                android:id="@+id/tvScoreName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/number_123"
-                android:textColor="#4C4C4C"
-                android:textSize="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                app:layout_constraintStart_toEndOf="@+id/tvscore"
-                app:layout_constraintTop_toBottomOf="@+id/tvGuess"
-                tools:ignore="SmallSp" />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_games_name"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginTop="@dimen/_18sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_14sdp"
-                android:layout_marginEnd="@dimen/_24sdp"
-                android:background="@drawable/btn_green"
-                android:drawableEnd="@drawable/ic_white_play_circle_filled_24"
-                android:paddingEnd="10dp"
-                android:text="@string/play_games"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:backgroundTint="@color/teal_700"
-                app:cornerRadius="@dimen/_35sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_guess_name"
-                app:layout_constraintTop_toBottomOf="@+id/tvscore"
-                app:strokeColor="@color/transparent"
-                tools:ignore="RtlSymmetry" />
-
-            <ImageView
-                android:id="@+id/iv_guess_name"
-                android:layout_width="140dp"
-                android:layout_height="120dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/iv_guess_the_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

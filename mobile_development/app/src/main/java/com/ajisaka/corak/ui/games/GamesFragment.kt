@@ -1,19 +1,21 @@
 package com.ajisaka.corak.ui.games
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.ajisaka.corak.MainActivity
 import com.ajisaka.corak.databinding.FragmentGamesBinding
-import com.ajisaka.corak.ui.home.HomeFragmentDirections
+import com.ajisaka.corak.ui.games.gtn.GuessTheNameActivity
+import com.ajisaka.corak.utils.ConstantGame
 
 class GamesFragment : Fragment() {
     private lateinit var binding: FragmentGamesBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,6 +36,11 @@ class GamesFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         binding = FragmentGamesBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
+
+        binding.btnGamesName.setOnClickListener{
+            val intent = Intent(context, GuessTheNameActivity::class.java)
+            startActivity(intent)
+        }
         return binding.root
     }
 }

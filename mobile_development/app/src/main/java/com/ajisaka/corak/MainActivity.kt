@@ -13,12 +13,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -28,7 +25,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.ajisaka.corak.databinding.ActivityMainBinding
 import com.ajisaka.corak.databinding.DialogCustomImageSelectionBinding
 import com.ajisaka.corak.ui.detail.DetailActivity
-import com.ajisaka.corak.ui.setting.SettingFragment
+import com.ajisaka.corak.ui.games.GamesFragment
 import com.google.android.material.snackbar.Snackbar
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -39,7 +36,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import java.io.*
-import java.lang.System.exit
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -84,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onActivityResult(resultCode: Int, requestCode: Int, data: Intent?) {
         super.onActivityResult(resultCode, requestCode, data)
+        //This code is to pass the value to Fragment
         Log.d("Image", "$resultCode $requestCode $data")
         if (requestCode == Activity.RESULT_OK) {
             if (resultCode == CAMERA) {

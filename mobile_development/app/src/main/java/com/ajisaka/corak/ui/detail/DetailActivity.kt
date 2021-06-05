@@ -32,6 +32,7 @@ import com.ajisaka.corak.utils.Constants
 import com.ajisaka.corak.viewmodel.FavBatikViewModel
 import com.ajisaka.corak.viewmodel.FavBatikViewModelFactory
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
@@ -106,6 +107,7 @@ class DetailActivity : AppCompatActivity() {
             Glide.with(this@DetailActivity)
                 .load(bitmap)
                 .centerCrop()
+                .apply( RequestOptions().override(224, 224))
                 .into(binding.ivImage)
             // classification with intent
             runClassifier(bitmap)

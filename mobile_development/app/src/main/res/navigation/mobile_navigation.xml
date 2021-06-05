@@ -70,4 +70,5 @@
         android:name="com.ajisaka.corak.ui.setting.SettingFragment"
         android:label="@string/setting"
         tools:layout="@layout/fragment_setting" />
+
 </navigation>

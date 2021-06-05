@@ -140,7 +140,7 @@ class HomeFragment : Fragment() {
             dialogInterface.dismiss() // Dialog will be dismissed
         }
         //performing negative action
-        builder.setNegativeButton(resources.getString(R.string.lbl_no)) { dialogInterface, which ->
+        builder.setNegativeButton(resources.getString(R.string.lbl_no)) { dialogInterface, _ ->
             dialogInterface.dismiss() // Dialog will be dismissed
         }
         // Create the AlertDialog
