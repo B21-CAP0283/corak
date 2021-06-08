@@ -93,4 +93,5 @@
     <string name="question">Apa nama motif dari gambar di bawah ini?</string>
     <string name="score">Score</string>
     <string name="_1234_point">1234 Poin</string>
+    <string name="game_maintenance">Game Sedang dalam Pemeliharaan</string>
 </resources>

@@ -33,14 +33,14 @@
                 android:contentDescription="@string/bgimg"
                 android:src="@drawable/bg_image" />
 
-            <TextView
-                android:id="@+id/confidence"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="25dp"
-                android:text="@string/akurasi"
-                android:textSize="12sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/confidence"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:text="@string/akurasi"-->
+<!--                android:textSize="12sp" />-->
 
             <TextView
                 android:id="@+id/notFound"

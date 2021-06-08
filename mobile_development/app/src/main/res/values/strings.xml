@@ -92,4 +92,5 @@
     <string name="question">What is the name of the motif from the image below?</string>
     <string name="score">Score</string>
     <string name="_1234_point">1234 Point</string>
+    <string name="game_maintenance">Game Under Maintenance</string>
 </resources>

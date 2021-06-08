@@ -100,9 +100,9 @@
 
             <ImageView
                 android:id="@+id/iv_guess_name"
-                android:layout_width="140dp"
-                android:layout_height="120dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_95sdp"
+                android:layout_marginStart="@dimen/_18sdp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/iv_guess_the_name"
                 app:layout_constraintStart_toStartOf="parent"
@@ -111,25 +111,34 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
-           android:background="@drawable/reactangle_cardview_games"
+           android:background="@drawable/reactangle_cardview_games_loack"
            android:layout_width="match_parent"
            android:layout_marginStart="15dp"
            android:layout_marginEnd="15dp"
            android:layout_marginTop="24dp"
            android:layout_height="160dp">
 
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:src="@drawable/gembok"
+                android:layout_marginStart="@dimen/_18sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/guess_the_picture"
-                android:textColor="@color/black"
+                android:textColor="#535353"
                 android:textSize="@dimen/_14sdp"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="parent" />
 
 <!--            <TextView-->
@@ -159,65 +168,26 @@
 <!--                tools:ignore="SmallSp" />-->
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button"
+                android:id="@+id/btn_picture"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:layout_marginStart="@dimen/_19sdp"
                 android:layout_marginBottom="@dimen/_14sdp"
-                android:background="@drawable/btn_green"
+                android:background="@color/tab_indicator_gray"
                 android:drawableEnd="@drawable/ic_white_play_circle_filled_24"
                 android:paddingEnd="10dp"
                 android:text="@string/play_games"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                app:backgroundTint="@color/teal_700"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:backgroundTint="#929292"
                 app:cornerRadius="@dimen/_35sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:strokeColor="@color/white"
+                app:strokeColor="#929292"
                 tools:ignore="RtlSymmetry" />
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/iv_sample_batik"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="7dp"
-                android:src="@drawable/iv_sample_check"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="16dp"
-                android:src="@drawable/iv_sample_batik2"
-                android:layout_marginTop="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="3dp"
-                android:src="@drawable/iv_sample_batik3"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

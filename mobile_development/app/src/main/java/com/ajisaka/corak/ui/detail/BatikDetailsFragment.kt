@@ -33,9 +33,7 @@ class BatikDetailsFragment : Fragment() {
     private val mFavBatikViewModel: FavBatikViewModel by viewModels {
         FavBatikViewModelFactory((requireActivity().application as FavBatikApplication).repository)
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -84,7 +82,7 @@ class BatikDetailsFragment : Fragment() {
                 e.printStackTrace()
             }
             mBinding!!.batikName.text = it.batikDetails.name
-            mBinding!!.confidence.text = it.batikDetails.confidence // Used to make first letter capital
+//            mBinding!!.confidence.text = it.batikDetails.confidence
             mBinding!!.origin.text = it.batikDetails.origin
             mBinding!!.characteristic.text = it.batikDetails.characteristic
             mBinding!!.philosophy.text = it.batikDetails.philosophy

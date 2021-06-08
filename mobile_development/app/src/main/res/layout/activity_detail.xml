@@ -38,48 +38,32 @@
                 android:contentDescription="@string/bgimg"
                 android:src="@drawable/bg_image" />
 
-            <TextView
-                android:id="@+id/confidence"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="25dp"
-                android:text="@string/akurasi"
-                android:textSize="12sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/confidence"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:text="@string/akurasi"-->
+<!--                android:textSize="12sp" />-->
 
             <TextView
                 android:id="@+id/notFound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:text="@string/batik_tidak_diketahui"
                 android:textColor="@color/darkPrimary"
-                android:textSize="18sp"
+                android:textSize="@dimen/_18sdp"
                 android:visibility="gone" />
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="top|end"-->
-<!--                android:layout_margin="@dimen/_10sdp"-->
-<!--                android:background="@drawable/favorite_button_background"-->
-<!--                android:elevation="@dimen/_10sdp">-->
-
-<!--                <ImageButton-->
-<!--                    android:id="@+id/iv_favorite_batik"-->
-<!--                    android:layout_width="24dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/transparent_rect"-->
-<!--                    android:contentDescription="@string/todo"-->
-<!--                    android:src="@drawable/ic_favorite_border" />-->
-<!--            </LinearLayout>-->
             <LinearLayout
                 android:id="@+id/linearAudio"
                 android:layout_width="@dimen/_34sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_gravity="top|end"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/favorite_button_background"
                 android:elevation="@dimen/_10sdp">
             <ToggleButton
@@ -102,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="@dimen/_minus45sdp"
+                android:layout_marginTop="@dimen/_minus35sdp"
                 android:text="@string/name"
                 android:textColor="@color/darkPrimary"
                 android:textSize="18sp" />
@@ -184,4 +168,33 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:backgroundTint="@color/darkPrimary"
+            android:clickable="true"
+            android:contentDescription="@string/floaticon"
+            android:focusable="true"
+            android:outlineAmbientShadowColor="@color/transparent"
+            android:outlineSpotShadowColor="@color/transparent"
+            android:src="@drawable/ic_scan_white"
+            android:tint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:maxImageSize="32dp"
+            app:tint="@color/white"
+            tools:targetApi="p" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

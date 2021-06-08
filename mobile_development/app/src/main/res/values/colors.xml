@@ -26,7 +26,7 @@
     <color name="tab_indicator_gray">#c4c4c4</color>
     <color name="intro_title_color">#000000</color>
     <color name="intro_description_color">#656565</color>
-
+    <color name="transpatant_gray">#02223b96</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
