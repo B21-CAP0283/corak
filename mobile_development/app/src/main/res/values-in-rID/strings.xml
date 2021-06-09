@@ -44,7 +44,7 @@
     <string name="slide_4_title">Anda sudah siap</string>
     <string name="slide_4_desc">Cukup berbicara, mari lompat ke Aplikasi. Cobalah bereksperimen dengan fitur-fiturnya. Berharap kamu akan menikmatinya!</string>
     <string name="todo">TODO</string>
-    <string name="version">Oleh Tim Ajisaka versi BETA 1.0.0</string>
+    <string name="version">Oleh Tim Ajisaka versi BETA 1.1.0</string>
     <string name="home">Home</string>
     <string name="games">Games</string>
     <string name="about">Tentang</string>
@@ -52,7 +52,7 @@
 
     <string name="scan_now">Pindai</string>
     <string name="play_games">Permainan</string>
-    <string name="your_fav_batik">Favorit Batik Anda</string>
+    <string name="your_fav_batik">Tangkapan Anda yang tersimpan</string>
     <string name="guess_the_picture">Tebak Gambar</string>
     <string name="your_highest_score">Skor Tertinggi Anda:</string>
     <string name="guess_the_name">Tebak Nama</string>
