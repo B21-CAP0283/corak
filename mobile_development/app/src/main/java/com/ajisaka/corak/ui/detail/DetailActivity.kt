@@ -83,7 +83,7 @@ class DetailActivity : AppCompatActivity() {
 
     private var title: String = "Detail Batik"
     private val mInputSize = 224
-    private val mModelPath = "corak.tflite"
+    private val mModelPath = "corak_15_motives.tflite"
     private val mLabelPath = "label.txt"
     private lateinit var classifier: Classifier
 
@@ -94,6 +94,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.fabCamera.setOnClickListener{ customImageSelectionDialog() }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
@@ -117,11 +118,7 @@ class DetailActivity : AppCompatActivity() {
             pathImage = intent.getStringExtra("resultImage")
             Log.d("Get Data",pathImage.toString())
             val bitmap = BitmapFactory.decodeFile(pathImage)
-//            Glide.with(this@DetailActivity)
-//                .load(bitmap)
-//                .centerCrop()
-//                .apply( RequestOptions().override(224, 224))
-//                .into(binding.ivImage)
+
             runClassifier(bitmap)
         }else {
             Log.d("Error no data", "Else")
@@ -130,11 +127,10 @@ class DetailActivity : AppCompatActivity() {
             val uriImageFromGalery = Uri.parse(intent.getStringExtra("uriImage"))
             pathImage = getRealPathFromDocumentUri(applicationContext, uriImageFromGalery)
             val bitmap = BitmapFactory.decodeFile(pathImage)
-
             runClassifier(bitmap)
         }
 
-       binding.fabCamera.setOnClickListener{ customImageSelectionDialog() }
+
     }
     private fun getRealPathFromDocumentUri(context: Context, uri: Uri): String {
     var filePath = ""
@@ -257,8 +253,8 @@ class DetailActivity : AppCompatActivity() {
 
         //This code is to pass the value to Fragment
         Log.d("Image", "$resultCode $requestCode $data")
-        if (requestCode == Activity.RESULT_OK) {
-            if (resultCode == CAMERA) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA) {
 
                 data?.extras?.let {
                     val thumbnail: Bitmap =
@@ -269,7 +265,7 @@ class DetailActivity : AppCompatActivity() {
                     runClassifier(thumbnail)
 
                 }
-            } else if (resultCode == GALLERY) {
+            } else if (requestCode == GALLERY) {
 
                 data?.let {
                     // Here we will get the select image URI.
@@ -303,6 +299,13 @@ class DetailActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     @ExperimentalStdlibApi
     private fun runClassifier(bitmap: Bitmap) {
+        runOnUiThread {
+            Glide.with(this@DetailActivity)
+                    .load(bitmap)
+                    .centerCrop()
+                    .apply( RequestOptions().override(224, 224))
+                    .into(binding.ivImage)
+        }
         Log.d("bitmap classifier", bitmap.toString())
         val results: List<Classifier.Recognition> =
             classifier.recognizeImage(bitmap)
@@ -310,17 +313,12 @@ class DetailActivity : AppCompatActivity() {
         Log.d("results", results.toString())
         Log.d("result", result.toString())
         val txtAccurate = getString(R.string.txtAccurate)
-        runOnUiThread {
-            Glide.with(this@DetailActivity)
-                    .load(bitmap)
-                    .centerCrop()
-                    .into(binding.ivImage)
-        }
         try {
             val percentage = result[0].confidence
             val percentConfidence = PercentageHelper.toPercentage(percentage, 2)
             if (percentConfidence > PercentageHelper.toPercentage(0.70f, 2)) {
                 binding.fabCamera.visibility = View.GONE
+                binding.tbAudio.visibility = View.VISIBLE
                 runOnUiThread {
                     val title = result[0].title
                     val trim = replaceSpace(title).lowercase()

@@ -74,6 +74,7 @@
                 android:textOff=""
                 android:textOn=""
                 android:focusable="false"
+                android:layout_marginTop="@dimen/_100sdp"
                 android:layout_gravity="right"
                 android:background="@drawable/audio_toggle"
                 android:focusableInTouchMode="false"
@@ -86,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="@dimen/_minus35sdp"
+                android:layout_marginTop="@dimen/_minus5sdp"
                 android:text="@string/name"
                 android:textColor="@color/darkPrimary"
                 android:textSize="18sp" />
